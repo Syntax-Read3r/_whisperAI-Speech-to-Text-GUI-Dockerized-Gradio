@@ -1,0 +1,19 @@
+services:
+  whisper:
+    image: whisper-gui
+    build: .
+    ports:
+      - "7000:7010"
+    volumes:
+      - .:/app
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all  # Allows GPU usage if available
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    restart: unless-stopped

@@ -9,6 +9,7 @@ services:
     environment:
       - NVIDIA_VISIBLE_DEVICES=all  # Allows GPU usage if available
       - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+    runtime: nvidia  # <-- ADD THIS if you are using GPUs inside the container
     deploy:
       resources:
         reservations:
